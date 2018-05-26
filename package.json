@@ -1,0 +1,20 @@
+{
+  "name": "chocolatebusiness",
+  "version": "1.0.0",
+  "description": "A Chocolate Bussiness App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "author": "Oscar Stickland",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.0",
+    "electron-builder": "^20.13.3"
+  },
+  "dependencies": {
+    "mysql": "^2.15.0",
+    "npm": "^6.0.0"
+  }
+}

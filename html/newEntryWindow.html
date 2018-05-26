@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>New Entry</title>
+        <link rel="stylesheet" href="../css/materialize.min.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="../js/jqurey.min.js"></script>
+    </head>
+    <body>
+
+        <!-- Javascript - Electron -->
+        <script>
+            electron = require('electron')
+            var ipcRenderer = require('electron').ipcRenderer; 
+
+        </script>
+        <!-- Javascript - SQL -->
+        <script>
+            mysql = require('mysql');
+            let connection = mysql.createConnection({
+                host     : 'localhost',
+                user     : 'root',
+                password : 'root',
+                database : 'chocolate-business'
+            });
+            connection.connect(function(err) {
+                if (err) {
+                  console.error('error connecting: ' + err.stack);
+                  return;
+                }
+               
+                console.log('connected as id ' + connection.threadId);
+              });
+
+              $( "form" ).submit(function( event ) {
+                console.log( $( this ).serializeArray() );
+                event.preventDefault();
+              });
+            
+
+
+        </script>
+
+        <!-- Title -->
+        <nav>
+            <div class="nav-wrapper">
+                <a class="brand-logo center">Create New Entry</a>
+            </div>
+        </nav>
+
+        <div class="window-container">
+            <form>
+                    <h3><strong>General Infomation</strong></h3>
+                    <h6><strong>Date</strong></h6>
+                    <input type="date">
+                        
+            
+                    <h3><strong>Money</strong></h3>
+                    <h6><strong>Money Brought Home</strong></h6>
+                    <input type="number">
+                    <h6><strong>Float</strong></h6>
+                    <input type="number">
+                        
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+            </form>
+        </div>
+        
+
+        
+
+        <!-- JavaScript -->
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript">
+            /***
+             * Created by dadenew
+             * Submit email subscription using ajax
+             * Send email address
+             * Send controller
+             * Recive response
+             */
+            $(document).ready(function() { //you can replace $ with Jquery
+            
+              alert( 'jquery working~!' );
+            });
+        </script>
+    </body>
+</html> 

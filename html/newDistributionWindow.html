@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>New Distribution</title>
+        <link rel="stylesheet" href="../css/materialize.min.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+    </head>
+    <body>
+
+        <!-- Javascript - Electron -->
+        <script>
+            electron = require('electron')
+            var ipcRenderer = require('electron').ipcRenderer; 
+        </script>
+
+        <!-- Title -->
+        <nav>
+            <div class="nav-wrapper">
+                <a class="brand-logo center">New Distribution</a>
+            </div>
+        </nav>
+
+        <div class="window-container">
+            <form>
+                    <h3><strong>General Infomation</strong></h3>
+                    <h6><strong>Date</strong></h6>
+                    <input type="date">
+            
+                    <h3><strong>Money</strong></h3>
+                   <h6><strong>Total Money</strong></h6>
+                    <input type="number">
+                        
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                    </button>
+                </form>
+        </div>
+        
+
+        
+
+        <!-- JavaScript -->
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+</html> 

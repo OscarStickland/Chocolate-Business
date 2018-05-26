@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Chocolate Business</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+        <!-- Electron Javascript-->
+        <script type="text/javascript" src="js/main.js"></script>
+      
+
+        
+
+    </head>
+    <body>
+       
+        <!-- Title -->
+        <nav>
+            <div class="nav-wrapper">
+                <a class="brand-logo center">Chocolate Business</a>
+            </div>
+        </nav>
+
+        <div class="container"> 
+            <div class="row top-padding">
+                <div class="col-md-9">
+                    <h4 id="money">Current Money: LOADING or ERROR</h4>
+                    <h4 id="chocolate">Current Stock (Estimate): LOADING or ERROR</h4>
+                </div>
+                <div class="col-md-3 top-padding">
+                    <a class="waves-effect waves-light btn white-text" onclick="ipcRenderer.send('show-entry-window')">New Entry</a><br>
+                    <a class="waves-effect waves-light btn white-text" onclick="ipcRenderer.send('show-distribution-window')">New Distribution</a><br>
+                    <a class="waves-effect waves-light btn white-text" onclick="ipcRenderer.send('show-payment-window')">New Payment (Coles, Costco)</a><br>
+                    <a class="waves-effect waves-light btn white-text" onclick="">Backup Files</a><br>
+                                        
+                    <a class="btn-floating btn-large waves-effect waves-light red" onclick="reload()"><i class="material-icons">autorenew</i></a>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        <h6>THIS DOESN'T WORK CORRETLY</h6>
+
+       
+
+
+        
+        
+        <!-- JavaScript -->
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+</html> 
