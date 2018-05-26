@@ -124,7 +124,7 @@ function createNewEntryWindow() {
 
     //Garbage collection handle
     mainWindow.on('close', function(){
-        NewEntryWindow = null;
+        NewEntryWindow == null;
     });
 }
 
@@ -145,7 +145,7 @@ function createDistributionWindow() {
     //Garbage collection handle
     mainWindow.on('close', function(){
         connection.end();
-        NewDistributionWindow = null;
+        NewDistributionWindow == null;
     });
 }
 
@@ -205,6 +205,25 @@ ipcMain.on('reload-index-infomation', function(event) {
         event.sender.send('main-infomation-return', data);
     },100);
 
+
+});
+
+//Catch Form Submit form New Entry Window
+ipcMain.on("entry-window-submit", function(event, arg) {
+    var sql = "INSERT INTO countentry (Date, MoneyBroughtHome, MoneyReset) VALUES ?";
+    console.log(arg[0]);
+    console.log(arg[1]);
+    var values = [[arg[0], arg[1], "0"]];
+
+    connection.query(sql, [values], function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+    });
+    
+
+    NewEntryWindow == null;
+
+    Reload();
 
 });
 
