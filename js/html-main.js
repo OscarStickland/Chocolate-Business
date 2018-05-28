@@ -7,11 +7,12 @@ var chartInfomation = [];
 let chartData = [];
 
 //Send Request for infomation
-ipcRenderer.send('request-index-infomation');
+ipcRenderer.send('reload-index-infomation');
 
 //Catch Return Infomation
 ipcRenderer.on('main-infomation-return', function (event, arg) {
 
+    money = 0;
     money = arg[0]
     console.log(money);
     chocolate = arg[1]
@@ -28,7 +29,6 @@ ipcRenderer.on('main-infomation-return', function (event, arg) {
     setTimeout(function() {
         var i = 0;
         for (; i < chartInfomation.length; i++) { 
-            console.log('hi');
             chartData.push([chartInfomation[i][0], parseFloat(chartInfomation[i][1])]);
         }
     }, 100);    

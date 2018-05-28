@@ -74,14 +74,26 @@ function Reload() {
             money = money + results[i].MoneyBroughtHome;
         }
         
-      });
+    });
+
+    connection.query('SELECT * FROM paymententrys', function (error, results, fields) {
+        if (error) throw error;
+  
+        for(var i = 0; i < results.length; i++) {
+            console.log(results[i].amount);
+            money = money - results[i].amount;
+        }
+        
+    });    
     
+    
+    /*
     fs.readFile(path.join(__dirname, "/Infomation/chocolate.txt"), function (err, data) {
         if (err) {
           return console.error("MAIN (Chocolate) - " + err);
         }
         //console.log("MAIN - Asynchronous read of Chocolate: " + chocolate.toString());
-    });
+    });*/
 }
 
 
@@ -192,6 +204,7 @@ ipcMain.on('show-payment-window', function(event) {
 //Catch Request Index Infomation
 ipcMain.on('request-index-infomation', function(event){
     //console.log("MAIN - Got the Request")
+    console.log(money);
     data = [money, chocolate, chartInfomation];
     event.sender.send('main-infomation-return', data);
 });
@@ -201,6 +214,7 @@ ipcMain.on('reload-index-infomation', function(event) {
     Reload();
 
     setTimeout(function(){
+        console.log(money);
         data = [money, chocolate, chartInfomation];
         event.sender.send('main-infomation-return', data);
     },100);
@@ -221,7 +235,25 @@ ipcMain.on("entry-window-submit", function(event, arg) {
     });
     
 
-    NewEntryWindow == null;
+
+    Reload();
+
+});
+
+
+//Catch from Submit form New Payment Window
+ipcMain.on("payment-window-submit", function(event, arg) {
+    var sql = "INSERT INTO paymententrys (amount, storeID) VALUES ?";
+    console.log(arg[0]);
+    console.log(arg[1]);
+    var values = [[arg[0], arg[1]]];
+
+    connection.query(sql, [values], function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+    });
+    
+
 
     Reload();
 

@@ -11,7 +11,19 @@
         <!-- Javascript - Electron -->
         <script>
             electron = require('electron')
-            var ipcRenderer = require('electron').ipcRenderer; 
+            var ipcRenderer = require('electron').ipcRenderer;
+            const remote = require('electron').remote;
+
+            var window = remote.getCurrentWindow();
+
+            function sendForm(event) {
+                event.preventDefault(); // stop the form from submitting
+                var infomation = [document.getElementById("date").value, document.getElementById("store").value, document.getElementById("money").value];
+                console.log(infomation);
+                ipcRenderer.send('payment-window-submit', infomation);
+                window.close();
+            }
+
         </script>
 
         <!-- Title -->
@@ -22,27 +34,27 @@
         </nav>
 
         <div class="window-container">
-            <form>
-                    <h3><strong>General Infomation</strong></h3>
-                    <h6><strong>Date</strong></h6>
-                    <input type="date">
+            <form name="ipcForm" onsubmit="JavaScript:sendForm(event)">
+                <h3><strong>General Infomation</strong></h3>
+                <h6><strong>Date</strong></h6>
+                <input id="date" type="date">
 
-                    <h6><strong>Store</strong></h6>
-                    <select class="browser-default">
-                            <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Coles</option>
-                        <option value="2">Woolworths</option>
-                        <option value="3">Costco</option>
-                    </select>
+                <h6><strong>Store</strong></h6>
+                <select class="browser-default" id="store">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Coles</option>
+                    <option value="2">Costco</option>
+                    <option value="3">Woolworths</option>
+                </select>
             
-                    <h3><strong>Money</strong></h3>
-                   <h6><strong>Total Money</strong></h6>
-                    <input type="number">
+                <h3><strong>Money</strong></h3>
+                <h6><strong>Total Money</strong></h6>
+                <input id="money" type="number">
                         
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
-                    </button>
-                </form>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                </button>
+            </form>
         </div>
         
 
